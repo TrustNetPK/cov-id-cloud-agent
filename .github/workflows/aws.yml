@@ -22,6 +22,7 @@
 # 4. Store an IAM user access key in GitHub Actions secrets named `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
+
 on:
   push:
     branches:
@@ -70,7 +71,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: aries-issuer-container
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.issuer-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
