@@ -40,4 +40,7 @@ jobs:
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: issuer-agent-containerx
             location: 'east asia'
-            ports: [3000, 8000]
+            ports: [3000 8000]
+            cpu: 1
+            memory: 1
+            
