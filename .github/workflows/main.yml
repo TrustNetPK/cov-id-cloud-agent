@@ -33,10 +33,10 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: url-for-container
+            dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
             image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            name: issuer-agent-container
+            name: issuer-agent-container1
             location: 'east asia'
