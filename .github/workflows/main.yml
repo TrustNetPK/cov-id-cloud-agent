@@ -19,7 +19,7 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - name: 'Build and push images'
+        - name: 'Build and push issuer image'
           uses: azure/docker-login@v1
           with:
             login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
@@ -28,6 +28,14 @@ jobs:
         - run: |
             docker build -f IssuerDockerfile.cloud -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
+
+        - name: 'Build and push verifier image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+        - run: |
             docker build -f VerifierDockerfile.cloud -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-verifier-agent-image:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-verifier-agent-image:latest
 
