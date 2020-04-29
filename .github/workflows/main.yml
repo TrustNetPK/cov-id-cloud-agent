@@ -21,14 +21,12 @@ jobs:
         
         - name: 'Build and push issuer image'
           uses: azure/docker-login@v1
-          env:
-            GITHUB_SHA: ${{ github.sha }}
           with:
             login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build -f $GITHUB_WORKSPACE/IssuerDockerfile.cloud -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
+            docker build . --file IssuerDockerfile.cloud -tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
 
         - name: 'Deploy to Azure Issuer Container Instance'
