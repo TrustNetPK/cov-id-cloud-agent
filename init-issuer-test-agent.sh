@@ -28,6 +28,5 @@ aca-py start  --inbound-transport http 0.0.0.0 $AGENT_INBOUND_PORT \
     --auto-respond-presentation-proposal \
     --auto-respond-presentation-request \
     --auto-store-credential \
-    --auto-verify-presentation \
     --enable-undelivered-queue \
     --genesis-url $GENESIS

@@ -37,6 +37,5 @@ ENTRYPOINT ["/bin/bash", "-c", "aca-py start  --inbound-transport http 0.0.0.0 $
     --auto-respond-presentation-proposal \
     --auto-respond-presentation-request \
     --auto-store-credential \
-    --auto-verify-presentation \
     --enable-undelivered-queue \
     --genesis-url $GENESIS", "--"]
