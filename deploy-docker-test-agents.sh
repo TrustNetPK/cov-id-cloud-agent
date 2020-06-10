@@ -21,3 +21,5 @@ docker build --build-arg INBOUND_PORT=$VERIFIER_INBOUND_PORT --build-arg API_POR
 
 docker run -itd -p 3000:3000 -p 8000:8000 aries-issuer-agent
 docker run -itd -p 4000:4000 -p 9000:9000 aries-verifier-agent
+
+#TODO: Add Prover and Accreditor
