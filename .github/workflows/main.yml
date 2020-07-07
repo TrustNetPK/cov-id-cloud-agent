@@ -19,7 +19,7 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - name: 'Build and push issuer image'
+        - name: 'Build and push images'
           uses: azure/docker-login@v1
           env:
             GITHUB_SHA: ${{ github.sha }}
@@ -29,13 +29,16 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
             cd $GITHUB_WORKSPACE/issuer
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest --build-arg INBOUND_PORT=8000 --build-arg API_PORT=3000 --build-arg ISSUER_SEED=${{ secrets.ISSUER_SEED }} --build-arg ISSUER_AGENT_ENDPOINT=${{ secrets.ISSUER_AGENT_ENDPOINT }} --build-arg ISSUER_WALLET_KEY=${{ secrets.ISSUER_WALLET_KEY }} --build-arg ISSUER_ADMIN_API_KEY=${{ secrets.ISSUER_ADMIN_API_KEY }} --build-arg GENESIS_URL=${{ secrets.GENESIS_URL }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-issuer-agent-image:latest
             cd $GITHUB_WORKSPACE/verifier
-            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-verifier-agent-image:latest
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-verifier-agent-image:latest --build-arg INBOUND_PORT=8000 --build-arg API_PORT=3000 --build-arg VERIFIER_SEED=${{ secrets.VERIFIER_SEED }} --build-arg VERIFIER_AGENT_ENDPOINT=${{ secrets.VERIFIER_AGENT_ENDPOINT }} --build-arg VERIFIER_WALLET_KEY=${{ secrets.VERIFIER_WALLET_KEY }} --build-arg VERIFIER_ADMIN_API_KEY=${{ secrets.VERIFIER_ADMIN_API_KEY }} --build-arg GENESIS_URL=${{ secrets.GENESIS_URL }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-verifier-agent-image:latest
+            cd $GITHUB_WORKSPACE/accreditor
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-accreditor-agent-image:latest --build-arg INBOUND_PORT=8000 --build-arg API_PORT=3000 --build-arg ACCREDITOR_SEED=${{ secrets.ACCREDITOR_SEED }} --build-arg ACCREDITOR_AGENT_ENDPOINT=${{ secrets.ACCREDITOR_AGENT_ENDPOINT }} --build-arg ACCREDITOR_WALLET_KEY=${{ secrets.ACCREDITOR_WALLET_KEY }} --build-arg ACCREDITOR_ADMIN_API_KEY=${{ secrets.ACCREDITOR_ADMIN_API_KEY }} --build-arg GENESIS_URL=${{ secrets.GENESIS_URL }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-accreditor-agent-image:latest
 
-        - name: 'Deploy to Azure Issuer Container Instance'
+        - name: 'Deploy to Azure Issuer, Verifier and Accreditor Container Instance'
           env:
             AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
             REGISTRY_LOGIN_SERVER: ${{ secrets.REGISTRY_LOGIN_SERVER }}
