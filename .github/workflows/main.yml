@@ -19,7 +19,7 @@ jobs:
           with:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-        - name: 'Build and push issuer image'
+        - name: 'Build and push images'
           uses: azure/docker-login@v1
           env:
             GITHUB_SHA: ${{ github.sha }}
@@ -38,7 +38,7 @@ jobs:
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-accreditor-agent-image:latest --build-arg INBOUND_PORT=8000 --build-arg API_PORT=3000 --build-arg ACCREDITOR_SEED=${{ secrets.ACCREDITOR_SEED }} --build-arg ACCREDITOR_AGENT_ENDPOINT=${{ secrets.ACCREDITOR_AGENT_ENDPOINT }} --build-arg ACCREDITOR_WALLET_KEY=${{ secrets.ACCREDITOR_WALLET_KEY }} --build-arg ACCREDITOR_ADMIN_API_KEY=${{ secrets.ACCREDITOR_ADMIN_API_KEY }} --build-arg GENESIS_URL=${{ secrets.GENESIS_URL }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aries-accreditor-agent-image:latest
 
-        - name: 'Deploy to Azure Issuer Container Instance'
+        - name: 'Deploy to Azure Issuer, Verifier and Accreditor Container Instance'
           env:
             AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
             REGISTRY_LOGIN_SERVER: ${{ secrets.REGISTRY_LOGIN_SERVER }}
