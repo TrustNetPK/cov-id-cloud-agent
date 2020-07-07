@@ -1,5 +1,5 @@
 # COV-ID Cloud Agents
-A collection of hyperledger aries cloud-agent to issue or verify COVID-19 digital verifiable credentials.
+A collection of hyperledger aries cloud-agent to issue or verify COVID-19 vaccination digital verifiable credentials.
 
 # Agents
 - **Issuer** *(Issues digital vaccination credential i.e Hospital, Clinic or some Medical Institute)*
@@ -8,8 +8,7 @@ A collection of hyperledger aries cloud-agent to issue or verify COVID-19 digita
 
 # Usage
 
-Deploy the docker for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts or build the docker file.
-
+Deploy the dockerfile to cloud of your choice for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts or build the docker file.
 
 # Look at API documentation here
 https://documenter.getpostman.com/view/8801337/SztEb7jT
