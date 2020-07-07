@@ -8,7 +8,7 @@ A collection of hyperledger aries cloud-agent to issue or verify COVID-19 digita
 
 # Usage
 
-Deploy the docker for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts.
+Deploy the docker for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts or build the docker file.
 
 
 # Look at API documentation here
