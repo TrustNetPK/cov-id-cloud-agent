@@ -2,9 +2,13 @@
 A collection of hyperledger aries cloud-agent to issue or verify COVID-19 digital verifiable credentials.
 
 # Agents
-- Issuer (Issues digital vaccination credential i.e Hospital, Clinic or some Medical Institute)
-- Verifier (Verifies digital vaccination credential i.e Aviation authorities of a country)
-- Accreditor (Organiation that verifies the verifier i.e World Health Organization WHO or some national health entity)
+- **Issuer** *(Issues digital vaccination credential i.e Hospital, Clinic or some Medical Institute)*
+- **Verifier** *(Verifies digital vaccination credential i.e Aviation authorities of a country)*
+- **Accreditor** *(Organiation that verifies the verifier i.e World Health Organization WHO or some national health entity)*
+
+# Usage
+
+Deploy the docker for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts.
 
 
 # Look at API documentation here
