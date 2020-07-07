@@ -1,5 +1,10 @@
-# COV-ID Cloud Agent
-A hyperledger aries cloud-agent to issue or verify COVID-19 digital verifiable credentials
+# COV-ID Cloud Agents
+A collection of hyperledger aries cloud-agent to issue or verify COVID-19 digital verifiable credentials.
+
+# Agents
+- Issuer (Issues digital vaccination credential i.e Hospital, Clinic or some Medical Institute)
+- Verifier (Verifies digital vaccination credential i.e Aviation authorities of a country)
+- Accreditor (Organiation that verifies the verifier i.e World Health Organization WHO or some national health entity)
 
 
 # Look at API documentation here
