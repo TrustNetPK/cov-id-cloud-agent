@@ -4,6 +4,7 @@ ARG ISSUER_SEED
 ARG ISSUER_AGENT_ENDPOINT
 ARG ISSUER_WALLET_KEY
 ARG ISSUER_ADMIN_API_KEY
+ARG ISSUER_HOSTNAME
 ARG GENESIS_URL
 ARG INBOUND_PORT
 ARG API_PORT
@@ -15,12 +16,13 @@ ENV ADMIN_API_KEY=$ISSUER_ADMIN_API_KEY
 ENV GENESIS=$GENESIS_URL
 ENV AGENT_INBOUND_PORT=$INBOUND_PORT
 ENV ADMIN_API_PORT=$API_PORT
+ENV HOSTNAME=$ISSUER_HOSTNAME
 
 RUN pip install aries-cloudagent
 
-ENTRYPOINT ["/bin/bash", "-c", "aca-py start  --inbound-transport http 0.0.0.0 $AGENT_INBOUND_PORT \
+ENTRYPOINT ["/bin/bash", "-c", "aca-py start  --inbound-transport http $HOSTNAME $AGENT_INBOUND_PORT \
     --outbound-transport http \
-    --admin 0.0.0.0 $ADMIN_API_PORT \
+    --admin $HOSTNAME $ADMIN_API_PORT \
     --seed $SEED \
     --endpoint $AGENT_ENDPOINT \
     --wallet-key $WALLET_KEY \
