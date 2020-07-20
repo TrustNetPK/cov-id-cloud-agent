@@ -1,26 +1,45 @@
 # Issuer & Verifier Provisioning
 export ISSUER_SEED="000000000000000000000000SomeSeed"
-export ISSUER_AGENT_ENDPOINT="http://localhost:8000"
+export ISSUER_AGENT_ENDPOINT="http://localhost:6000"
 export ISSUER_WALLET_KEY="Xaff17iH1MNc"
 export ISSUER_ADMIN_API_KEY="secret"
 
 export VERIFIER_SEED="000000000000000000000001SomeSeed"
-export VERIFIER_AGENT_ENDPOINT="http://localhost:9000"
+export VERIFIER_AGENT_ENDPOINT="http://localhost:7000"
 export VERIFIER_WALLET_KEY="5UVlxFfX041L"
 export VERIFIER_ADMIN_API_KEY="secret"
 
+export PROVER_SEED="000000000000000000000002SomeSeed"
+export PROVER_AGENT_ENDPOINT="http://localhost:8000"
+export PROVER_WALLET_KEY="QW1o7MHV"
+export PROVER_ADMIN_API_KEY="secret"
+
+export ACCREDITOR_SEED="000000000000000000000003SomeSeed"
+export ACCREDITOR_AGENT_ENDPOINT="http://localhost:9000"
+export ACCREDITOR_WALLET_KEY="k35jkDNu"
+export ACCREDITOR_ADMIN_API_KEY="secret"
+
 export GENESIS_URL="http://greenlight.bcovrin.vonx.io/genesis"
 
-export ISSUER_INBOUND_PORT=8000
-export ISSUER_API_PORT=3000
-export VERIFIER_INBOUND_PORT=9000
-export VERIFIER_API_PORT=4000
+export ISSUER_INBOUND_PORT=6000
+export ISSUER_API_PORT=2000
+
+export VERIFIER_INBOUND_PORT=7000
+export VERIFIER_API_PORT=3000
+
+export PROVER_INBOUND_PORT=8000
+export PROVER_API_PORT=4000
+
+export ACCREDITOR_INBOUND_PORT=9000
+export ACCREDITOR_API_PORT=5000
 
 
-#TODO: Add Prover and Accreditor
+docker build --build-arg INBOUND_PORT=$ISSUER_INBOUND_PORT --build-arg API_PORT=$ISSUER_API_PORT --build-arg ISSUER_ADMIN_API_KEY=$ISSUER_ADMIN_API_KEY --build-arg ISSUER_SEED=$ISSUER_SEED --build-arg ISSUER_AGENT_ENDPOINT=$ISSUER_AGENT_ENDPOINT --build-arg ISSUER_WALLET_KEY=$ISSUER_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f issuer/Dockerfile  -t aries-issuer-agent .
+docker build --build-arg INBOUND_PORT=$VERIFIER_INBOUND_PORT --build-arg API_PORT=$VERIFIER_API_PORT --build-arg VERIFIER_ADMIN_API_KEY=$VERIFIER_ADMIN_API_KEY --build-arg VERIFIER_SEED=$VERIFIER_SEED --build-arg VERIFIER_AGENT_ENDPOINT=$VERIFIER_AGENT_ENDPOINT --build-arg VERIFIER_WALLET_KEY=$VERIFIER_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f verifier/Dockerfile  -t aries-verifier-agent .
+docker build --build-arg INBOUND_PORT=$PROVER_INBOUND_PORT --build-arg API_PORT=$PROVER_API_PORT --build-arg PROVER_ADMIN_API_KEY=$PROVER_ADMIN_API_KEY --build-arg PROVER_SEED=$PROVER_SEED --build-arg PROVER_AGENT_ENDPOINT=$PROVER_AGENT_ENDPOINT --build-arg PROVER_WALLET_KEY=$PROVER_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f prover/Dockerfile  -t aries-prover-agent .
+docker build --build-arg INBOUND_PORT=$ACCREDITOR_INBOUND_PORT --build-arg API_PORT=$ACCREDITOR_API_PORT --build-arg ACCREDITOR_ADMIN_API_KEY=$ACCREDITOR_ADMIN_API_KEY --build-arg ACCREDITOR_SEED=$ACCREDITOR_SEED --build-arg ACCREDITOR_AGENT_ENDPOINT=$ACCREDITOR_AGENT_ENDPOINT --build-arg ACCREDITOR_WALLET_KEY=$ACCREDITOR_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f accreditor/Dockerfile  -t aries-accreditor-agent .
 
-docker build --build-arg INBOUND_PORT=$ISSUER_INBOUND_PORT --build-arg API_PORT=$ISSUER_API_PORT --build-arg API_KEY=$ISSUER_ADMIN_API_KEY --build-arg ISSUER_SEED=$ISSUER_SEED --build-arg ISSUER_AGENT_ENDPOINT=$ISSUER_AGENT_ENDPOINT --build-arg ISSUER_WALLET_KEY=$ISSUER_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f Dockerfile.local  -t aries-issuer-agent .
-docker build --build-arg INBOUND_PORT=$VERIFIER_INBOUND_PORT --build-arg API_PORT=$VERIFIER_API_PORT --build-arg API_KEY=$VERIFIER_ADMIN_API_KEY --build-arg VERIFIER_SEED=$VERIFIER_SEED --build-arg VERIFIER_AGENT_ENDPOINT=$VERIFIER_AGENT_ENDPOINT --build-arg VERIFIER_WALLET_KEY=$VERIFIER_WALLET_KEY --build-arg GENESIS_URL=$GENESIS_URL -f Dockerfile.local  -t aries-verifier-agent .
-
-docker run -itd -p 3000:3000 -p 8000:8000 aries-issuer-agent
-docker run -itd -p 4000:4000 -p 9000:9000 aries-verifier-agent
+docker run -itd -p 2000:2000 -p 6000:6000 aries-issuer-agent
+docker run -itd -p 3000:3000 -p 7000:7000 aries-verifier-agent
+docker run -itd -p 4000:4000 -p 8000:8000 aries-prover-agent
+docker run -itd -p 5000:5000 -p 9000:9000 aries-accreditor-agent
