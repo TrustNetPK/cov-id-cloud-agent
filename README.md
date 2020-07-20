@@ -11,13 +11,10 @@ sh deploy-docker-test-agents.sh
 
 > Use X-API-Key = 'secret' in header to access swagger
 
-Issuer agent: http://localhost:2000
-
-Verifier agent: http://localhost:3000
-
-Prover agent: http://localhost:4000
-
-Accreditor agent: http://localhost:5000
+- Issuer agent: http://localhost:2000
+- Verifier agent: http://localhost:3000
+- Prover agent: http://localhost:4000
+- Accreditor agent: http://localhost:5000
 
 
 
