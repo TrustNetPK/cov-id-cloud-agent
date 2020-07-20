@@ -6,7 +6,19 @@ A collection of hyperledger aries cloud-agent to issue or verify COVID-19 vaccin
 - **Verifier** *(Verifies digital vaccination credential i.e Aviation authorities of a country)*
 - **Accreditor** *(Organiation that verifies the verifier i.e World Health Organization WHO or some national health entity)*
 
-# Usage
+# Run local dev enviornment
+```
+git clone https://github.com/TrustNetPK/cov-id-cloud-agent.git
+cd cov-id-cloud-agent
+sh deploy-docker-test-agents.sh
+```
+
+> Use X-API-Key = 'secret' in header to access swagger
+
+- Issuer agent: http://localhost:2000
+- Verifier agent: http://localhost:3000
+- Prover agent: http://localhost:4000
+- Accreditor agent: http://localhost:5000
 
 Deploy the dockerfile to cloud of your choice for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts or build the docker file.
 
