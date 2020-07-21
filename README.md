@@ -18,8 +18,8 @@ docker-compose up
 
 - Issuer agent: http://localhost:3000
 - Verifier agent: http://localhost:4000
-- Prover agent: http://localhost:2000
-- Accreditor agent: http://localhost:1000
+- Prover agent: http://localhost:5000
+- Accreditor agent: http://localhost:2000
 
 Deploy the dockerfile to cloud of your choice for either Issuer, Verifier or Accreditor based on your role in the digital trust ecosystem. To run locally use the provided bash scripts or build the docker file.
 
