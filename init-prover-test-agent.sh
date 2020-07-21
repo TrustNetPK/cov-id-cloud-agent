@@ -7,7 +7,7 @@ export ADMIN_API_KEY="secret"
 export GENESIS="http://greenlight.bcovrin.vonx.io/genesis"
 
 export AGENT_INBOUND_PORT=7000
-export ADMIN_API_PORT=2000
+export ADMIN_API_PORT=5000
 
 aca-py start  --inbound-transport http 0.0.0.0 $AGENT_INBOUND_PORT \
     --outbound-transport http \
