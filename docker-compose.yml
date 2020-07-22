@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 networks:
   services:
@@ -7,9 +7,25 @@ networks:
         - subnet: 173.17.0.0/24
 
 services:
-  
   # Agents
-  
+
+  agency:
+    build:
+      context: ../aries-cloudagency-python
+      dockerfile: Dockerfile
+      args:
+        - AGENCY_ENDPOINT=http://173.17.0.104
+        - AGENCY_ADMIN_API_KEY=secret
+        - GENESIS_URL=http://greenlight.bcovrin.vonx.io/genesis
+        - AGENCY_INBOUND_PORT=7500
+        - AGENCY_ADMIN_PORT=2500
+    ports:
+      - 2500:2500
+      - 7500:7500
+    networks:
+      services:
+        ipv4_address: 173.17.0.104
+
   issuer:
     build:
       context: .
@@ -26,10 +42,12 @@ services:
     ports:
       - 3000:3000
       - 8000:8000
+    depends_on:
+      - agency
     networks:
       services:
         ipv4_address: 173.17.0.100
-  
+
   verifier:
     build:
       context: .
@@ -46,10 +64,11 @@ services:
     ports:
       - 4000:4000
       - 9000:9000
+    depends_on:
+      - agency
     networks:
       services:
         ipv4_address: 173.17.0.101
-
 
   prover:
     build:
@@ -67,10 +86,11 @@ services:
     ports:
       - 5000:5000
       - 7000:7000
+    depends_on:
+      - agency
     networks:
       services:
         ipv4_address: 173.17.0.102
-
 
   accreditor:
     build:
@@ -88,6 +108,8 @@ services:
     ports:
       - 2000:2000
       - 6000:6000
+    depends_on:
+      - agency
     networks:
       services:
         ipv4_address: 173.17.0.103
