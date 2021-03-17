@@ -16,7 +16,7 @@ ENV GENESIS=$GENESIS_URL
 ENV AGENT_INBOUND_PORT=$INBOUND_PORT
 ENV ADMIN_API_PORT=$API_PORT
 
-RUN pip install aries-cloudagent
+RUN pip install aries-cloudagent==0.5.3
 
 ENTRYPOINT ["/bin/bash", "-c", "aca-py start  --inbound-transport http 0.0.0.0 $AGENT_INBOUND_PORT \
     --outbound-transport http \
