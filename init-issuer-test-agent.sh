@@ -1,7 +1,6 @@
 # Issuer Provisioning
-export SEED="112200000000000000000000SomeSeed"
-# export AGENT_ENDPOINT="http://localhost:8000"
-export AGENT_ENDPOINT="http://5f5739a82489.ngrok.io"
+export SEED="000000000000000000000000SomeSeed"
+export AGENT_ENDPOINT="http://localhost:8000"
 export WALLET_KEY="Xaff17iH1MNc"
 export ADMIN_API_KEY="secret"
 

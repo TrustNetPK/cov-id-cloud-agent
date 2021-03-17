@@ -1,13 +1,13 @@
 # Verifier Provisioning
 export SEED="000000000000000000000003SomeSeed"
-export AGENT_ENDPOINT="http://localhost:9000"
+export AGENT_ENDPOINT="http://localhost:6000"
 export WALLET_KEY="8gxl6FgXh4sp"
 export ADMIN_API_KEY="secret"
 
 export GENESIS="http://greenlight.bcovrin.vonx.io/genesis"
 
 export AGENT_INBOUND_PORT=6000
-export ADMIN_API_PORT=1000
+export ADMIN_API_PORT=2000
 
 aca-py start  --inbound-transport http 0.0.0.0 $AGENT_INBOUND_PORT \
     --outbound-transport http \
